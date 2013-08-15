@@ -33,7 +33,7 @@ alias z='_z 2>&1'
 source "/Users/ms3uf/.bash_it/themes/colors.theme.bash"
 source "/Users/ms3uf/.bash_it/themes/base.theme.bash"
 function set_term_bg_color() {
-: ${3?"Usage: $0 RED GREEN BLUE"}
+: ${3?"Usage: $FUNCNAME RED GREEN BLUE"}
   echo -ne "\033]6;1;bg;red;brightness;$1\a"
   echo -ne "\033]6;1;bg;green;brightness;$2\a"
   echo -ne "\033]6;1;bg;blue;brightness;$3\a"
