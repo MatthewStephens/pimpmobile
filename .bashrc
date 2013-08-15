@@ -10,6 +10,9 @@ alias tping="ps -ef -l | grep -E '(tomcat|PPID)' | grep -v grep"
 export JAVA_HOME="/etc/alternatives/java_sdk"
 export JDK_HOME="/etc/alternatives/java_sdk"
 
+# git helper
+source /root/.git-completion.bash
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
