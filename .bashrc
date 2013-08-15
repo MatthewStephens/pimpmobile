@@ -1,25 +1,36 @@
-bit_branch ()
-{
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
-parse_git_branch () {
-  git name-rev HEAD 2> /dev/null | sed 's#HEAD\ \(.*\)# (git::\1)#'
-}
+# .bashrc
 
-. `brew --prefix`/etc/profile.d/z.sh
-source /Users/ms3uf/.git-completion.bash
+# the ever mysterious "sudo space" alias, which passes aliases to sudo
+alias sudo='sudo '
 
-# Added for /usr/local/bin 
-export PATH="/usr/local/bin:$PATH"
+# vim vi alias
+alias vi=`which vim`
 
-### Added for rbenv
-export PATH="/Users/ms3uf/.rbenv/shims:$PATH"
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
 
-# Added for personal scripts
-export PATH="/Users/ms3uf/bin/fits:/Users/ms3uf/bin:$PATH"
+# need more history!
+HISTFILESIZE=10000
+HISTTIMEFORMAT='%F %T '
 
-### Added by the Heroku Toolbelt
-export PATH="$PATH:/usr/local/heroku/bin"
+# editor vars
+SVN_EDITOR=vim
+EDITOR=vi
 
-# Added for npm (Node.js and Coffeescript)
-export PATH="$PATH:/usr/local/share/npm/bin"
+# User specific aliases and functions
+alias md5="md5sum"
+alias tping='ps -ef | grep tomcat'
+alias gimme='/usr/bin/find . -type f -name  2>/dev/null'
+alias gimmed='/usr/bin/find . -type d -name  2>/dev/null'
+alias ll='ls -lah'
+alias ls='ls -a'
+alias tping="ps -ef -l | grep -E '(tomcat|PPID)' | grep -v grep"
+alias tpid='ps -U tomcat -eo pid,command | grep tomcat | grep -v ps | grep -v grep | grep -o -E '\''^[0-9]+'\'''
+alias tomkill='sudo kill -9 `tpid`'
+alias ldapme="ldapsearch -h ldap.virginia.edu -D '' -w '' -x -v -b 'o=University of Virginia, c=US' '(uid=ms3uf)' cn '*'"
+alias rgrep="grep -R --exclude-dir=.svn "
+alias hover="watch -n 5 ps -o pid,user,etime,args -p "
+# Ruby vars
+RUBYLIB="/usr/lib/ruby/gems/1.8/gems"
