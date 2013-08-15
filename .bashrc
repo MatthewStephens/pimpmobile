@@ -19,6 +19,9 @@ HISTTIMEFORMAT='%F %T '
 SVN_EDITOR=vim
 EDITOR=vi
 
+# git helper
+source $HOME/.git-completion.bash
+
 # User specific aliases and functions
 alias md5="md5sum"
 alias tping='ps -ef | grep tomcat'
