@@ -27,7 +27,7 @@ ssh_add_status=$?
 if [[ $ssh_add_status -eq 1 ]]
 then
   echo "Loading GitHub identity:"
-  eval `ssh-add /home/ms3uf/.ssh/github_rsa`
+  eval `ssh-add "$HOME/.ssh/github_rsa"`
 else
   ssh-add -l 
 fi
