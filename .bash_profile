@@ -9,6 +9,28 @@ fi
 export PS1='[\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]] '
 
 PATH="$PATH:$JAVA_HOME/bin:/usr/local/rvm/gems/ruby-1.8.7-p334/bin:$HOME/bin"
+
+# get ssh-agent running if it's not
+SSH_SOCKET_FILE=$HOME/.ssh/agent.socket
+SSH_ENV_FILE=$HOME/.ssh/agent.env
+test -S $SSH_SOCKET_FILE || eval `/usr/local/bin/ssh-agent-wrapper.sh`
+test -s $SSH_ENV_FILE && . $SSH_ENV_FILE
+
+if [ ! -S $SSH_SOCKET_FILE  ]; then
+  echo "Please start ssh-agent"
+fi
+
+# load identities
+list=$( ssh-add -l )
+ssh_add_status=$?
+if [[ $ssh_add_status -eq 1 ]]
+then
+  echo "Loading GitHub identity:"
+  eval `ssh-add "$HOME/.ssh/github_rsa"`
+else
+  ssh-add -l
+fi
+
 # setting terminal title as well as refreshing PS1
 source "/root/.bash_it/themes/colors.theme.bash"
 source "/root/.bash_it/themes/base.theme.bash"
