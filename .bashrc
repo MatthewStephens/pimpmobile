@@ -67,7 +67,7 @@ function prompt_command() {
   # sets title in iTerm2 tab/window
   echo -ne "\033]0;`hostname -s`\007"
   # tweaks color in same
-  set_term_bg_color 255 255 255
+  set_term_bg_color 230 84 82
 }
 
 #
