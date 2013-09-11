@@ -34,6 +34,7 @@ fi
 # setting terminal title as well as refreshing PS1
 source "/root/.bash_it/themes/colors.theme.bash"
 source "/root/.bash_it/themes/base.theme.bash"
+function mdcd() { echo "mkdir $@ && cd $_"; mkdir -p "$@" && cd "${@:$#}"; }
 function set_term_bg_color() {
 : ${3?"Usage: $0 RED GREEN BLUE"}
   echo -ne "\033]6;1;bg;red;brightness;$1\a"
