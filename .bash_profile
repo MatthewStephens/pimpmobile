@@ -6,19 +6,22 @@ if [ -f ~/.bashrc ]; then
 fi
 export GREP_COLOR='01;37'
 
-# User specific environment and startup programs
+# pimped-out prompt
 export PS1='[\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]] '
 
-PATH=$PATH:$HOME/bin
 
 # get ssh-agent running if it's not
+# (relies on custom script)
+
 SSH_SOCKET_FILE=$HOME/.ssh/agent.socket
 SSH_ENV_FILE=$HOME/.ssh/agent.env
-test -S $SSH_SOCKET_FILE || eval `/usr/local/bin/ssh-agent-wrapper.sh`
-test -s $SSH_ENV_FILE && . $SSH_ENV_FILE
+if [[ $( which ssh-agent-wrapper.sh ) ]]; then
+  test -S $SSH_SOCKET_FILE || eval `ssh-agent-wrapper.sh`
+  test -s $SSH_ENV_FILE && . $SSH_ENV_FILE
 
-if [ ! -S $SSH_SOCKET_FILE  ]; then
-  echo "Please start ssh-agent"
+  if [ ! -S $SSH_SOCKET_FILE  ]; then
+    echo "Please start ssh-agent"
+  fi
 fi
 
 # load identities
@@ -32,28 +35,15 @@ else
   ssh-add -l
 fi
 
+# load color themes
+source "$HOME/.bash_it/themes/colors.theme.bash"
+source "$HOME/.bash_it/themes/base.theme.bash"
+
 # setting terminal title as well as refreshing PS1
-source "/home/ms3uf/.bash_it/themes/colors.theme.bash"
-source "/home/ms3uf/.bash_it/themes/base.theme.bash"
-function mdcd() { echo "mkdir $@ && cd $_"; mkdir -p "$@" && cd "${@:$#}"; }
-function set_term_bg_color() {
-: ${3?"Usage: $FUNCNAME RED GREEN BLUE"}
-  echo -ne "\033]6;1;bg;red;brightness;$1\a" 
-  echo -ne "\033]6;1;bg;green;brightness;$2\a" 
-  echo -ne "\033]6;1;bg;blue;brightness;$3\a"
-  return 0
-}
-function prompt_command() {
-  PS1="[\u]${yellow}$(ruby_version_prompt) ${blue}\h${reset_color} in ${green}\w\n${bold_cyan}$(scm_char)${green}$(scm_prompt_info) ${green}→${reset_color} "
-  # sets title in iTerm2 tab/window
-  echo -ne "\033]0;`hostname -s`\007"
-  # tweaks color in same
-  set_term_bg_color 163 230 134
-}
 PROMPT_COMMAND=prompt_command;
 if [[ $PROMPT ]]; then
   export PS1=$PROMPT
 fi
 
-export PATH
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# if rbenv in use, initialize
+[[ $( which rbenv ) ]] && eval "$(rbenv init -)"
