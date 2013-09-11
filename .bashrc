@@ -63,11 +63,11 @@ function set_term_bg_color() {
 }
 
 function prompt_command() {
-  PS1="[\u]${yellow}$(ruby_version_prompt) ${white}\h${reset_color} in ${green}\w\n${bold_cyan}$(scm_char)${green}$(scm_prompt_info) ${green}→${reset_color} "
+  PS1="[\u]${yellow}$(ruby_version_prompt) ${blue}\h${reset_color} in ${green}\w\n${bold_cyan}$(scm_char)${green}$(scm_prompt_info) ${green}→${reset_color} "
   # sets title in iTerm2 tab/window
   echo -ne "\033]0;`hostname -s`\007"
   # tweaks color in same
-  set_term_bg_color 255 255 255
+  set_term_bg_color 163 230 134
 }
 
 #
