@@ -15,8 +15,8 @@ alias df='df -TP '
 alias gimme='/usr/bin/find . -type f -name  2>/dev/null'
 alias hover="watch -n 5 ps -o pid,user,etime,args -p "
 alias ldapme="ldapsearch -h ldap.virginia.edu -D '' -w '' -x -v -b 'o=University of Virginia, c=US' '(uid=ms3uf)' cn '*'"
-alias ll='ls -lah --color'
-alias ls='ls -a --color'
+alias ll='ls -lahG'
+alias ls='ls -aG'
 alias rgrep="grep -R --exclude-dir=.svn "
 alias myip="ifconfig | grep -o -E 'inet.*[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.*[bB].*cast' | grep --color -o -E '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}'"
 alias tping="ps -ef -l | grep -E '(tomcat|PPID)' | grep -v grep"
