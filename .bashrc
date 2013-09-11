@@ -23,12 +23,13 @@ EDITOR=vi
 source $HOME/.git-completion.bash
 
 # User specific aliases and functions
+alias df='df -TP '
 alias md5="md5sum"
 alias tping='ps -ef | grep tomcat'
 alias gimme='/usr/bin/find . -type f -name  2>/dev/null'
 alias gimmed='/usr/bin/find . -type d -name  2>/dev/null'
-alias ll='ls -lah'
-alias ls='ls -a'
+alias ll='ls -lah --color'
+alias ls='ls -a --color'
 alias tping="ps -ef -l | grep -E '(tomcat|PPID)' | grep -v grep"
 alias tpid='ps -U tomcat -eo pid,command | grep tomcat | grep -v ps | grep -v grep | grep -o -E '\''^[0-9]+'\'''
 alias tomkill='sudo kill -9 `tpid`'
