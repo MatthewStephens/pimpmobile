@@ -46,4 +46,4 @@ if [[ $PROMPT ]]; then
 fi
 
 # if rbenv in use, initialize
-[[ $( which rbenv ) ]] && eval "$(rbenv init -)"
+hash rbenv 2>/dev/null && eval "$(rbenv init -)"
