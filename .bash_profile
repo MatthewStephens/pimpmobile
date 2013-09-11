@@ -36,6 +36,7 @@ alias z='_z 2>&1'
 
 source "/Users/ms3uf/.bash_it/themes/colors.theme.bash"
 source "/Users/ms3uf/.bash_it/themes/base.theme.bash"
+function mdcd() { echo "mkdir $@ && cd $_"; mkdir -p "$@" && cd "${@:$#}"; }
 function set_term_bg_color() {
 : ${3?"Usage: $FUNCNAME RED GREEN BLUE"}
   echo -ne "\033]6;1;bg;red;brightness;$1\a"
