@@ -11,27 +11,11 @@ fi
 #
 
 # specific to this machine
-alias adium='open -a adium'
-alias dug='~/.bin/dug.sh'
-alias bounce='echo "restarting httpd..."; sudo apachectl restart'
-alias eclipse='open -a Eclipse'
-alias evernote='open -a Evernote'
-alias ical='open -a ical'
-alias ichat='open -a Messages'
-alias chat='open -a Messages'
-alias itunes='open -a itunes'
-alias mate='/Applications/TextMate.app/Contents/SharedSupport/Support/bin/mate'
-alias oxygen='open -a Oxygen.app'
-alias portscan='stroke'
-alias stoptomcat='/usr/local/tomcat/bin/shutdown.sh'
-alias tomcat='/usr/local/tomcat/bin/startup.sh'
-alias unravel='gpg --decrypt '
-alias z='_z 2>&1'
 
 alias df='df -TP '
 [[ ! $( which md5 ) ]] && alias md5="md5sum"
 alias gimme='/usr/bin/find . -type f -name  2>/dev/null'
-alias hover="watch -n 5 ps -o pid,user,etime,args -p "
+alias hover="watch -d -n 5 ps -o pid,user,etime,args -p "
 alias ldapme="ldapsearch -h ldap.virginia.edu -D '' -w '' -x -v -b 'o=University of Virginia, c=US' '(uid=ms3uf)' cn '*'"
 alias ll='ls -lahG'
 alias ls='ls -aG'
@@ -85,7 +69,7 @@ function prompt_command() {
   # sets title in iTerm2 tab/window
   echo -ne "\033]0;`hostname -s`\007"
   # tweaks color in same
-  set_term_bg_color 230 84 82
+  set_term_bg_color 70 141 128
 }
 
 #
